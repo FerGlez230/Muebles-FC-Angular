@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { AngularMaterialModule } from './angular-material.module';
 import { RouterModule } from '@angular/router';
+import { SidenavComponent } from './sidenav/sidenav.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
+    SidenavComponent,
   ],
   imports: [
     CommonModule,
@@ -18,6 +20,7 @@ import { RouterModule } from '@angular/router';
   bootstrap: [],
   exports: [ 
     AngularMaterialModule,
-    HeaderComponent,]
+    HeaderComponent,
+    SidenavComponent]
 })
 export class CommonComponentsModule { }

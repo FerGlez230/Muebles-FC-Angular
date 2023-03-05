@@ -1,0 +1,14 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+   <span class="padding-right-1" routerLink="/" >Muebles FC</span>
+ <nav mat-tab-nav-bar [tabPanel]="tabPanel" backgroundColor="primary">
+  <a mat-tab-link *ngFor="let link of links"
+     (click)="activeLink = link"
+     routerLink="/{{link}}" 
+     [active]="activeLink == link"> {{link | titlecase }} </a>
+</nav>
+</mat-toolbar>
+<mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>

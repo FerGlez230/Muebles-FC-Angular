@@ -1,0 +1,54 @@
+$spaceamounts: (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 15); // Adjust this to include the pixel amounts you need.
+$sides: (top, bottom, left, right); // Leave this variable alone
+
+.margin-auto {
+  margin: auto;
+}
+
+.margin-x-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.margin-y-auto {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+@each $side in $sides {
+  .margin-#{$side}-auto {
+    margin-#{$side}: auto;
+  }
+}
+
+@each $space in $spaceamounts {
+    @each $side in $sides {
+  
+      .margin-#{$side}-#{$space} {
+        margin-#{$side}: #{$space}rem !important;
+      }
+  
+      .padding-#{$side}-#{$space} {
+        padding-#{$side}: #{$space}rem !important;
+      }
+      .margin-#{$side}-#{$space}_25 {
+        margin-#{$side}: #{$space + 0.25}rem !important;
+      }
+      .margin-#{$side}-#{$space}_5 {
+        margin-#{$side}: #{$space + 0.5}rem !important;
+      }
+      .margin-#{$side}-#{$space}_75 {
+        margin-#{$side}: #{$space + 0.1}rem !important;
+      }
+      .padding-#{$side}-#{$space}_25 {
+        padding-#{$side}: #{$space + 0.25}rem !important;
+      }
+      .padding-#{$side}-#{$space}_5 {
+        padding-#{$side}: #{$space + 0.5}rem !important;
+      }
+      .padding-#{$side}-#{$space}_75 {
+        padding-#{$side}: #{$space + 0.75}rem !important;
+      }
+    }
+  }
+  

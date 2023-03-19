@@ -8,11 +8,12 @@ export class ProductsCoreLayer {
     createNewProduct(id: number): ProductItem {
       
         return {
+            id: 'bsb',
             name: 'Fer',
             price: 45,
             category: 'Villas',
-            priceShortTerm: 40,
-            priceLongTerm: 50,
+            shortTermPrice: 40,
+            longTermPrice: 50,
         };
       }
 }

@@ -8,6 +8,7 @@ import { CommonComponentsModule } from './common/common-components.module';
 import { ProductsComponent } from './products/products.component';
 import { ClientsComponent } from './clients/clients.component';
 import { PurchasesComponent } from './purchases/purchases.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { PurchasesComponent } from './purchases/purchases.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     CommonComponentsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

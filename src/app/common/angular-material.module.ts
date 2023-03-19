@@ -10,8 +10,9 @@ import { MatSidenavModule} from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule} from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
 import { MatInputModule } from '@angular/material/input';
+import { CustomPaginatorIntl } from './paginator/CustomPaginatorIntl';
 
 
 @NgModule({
@@ -44,6 +45,9 @@ import { MatInputModule } from '@angular/material/input';
     MatToolbarModule,
     MatPaginatorModule,
     MatInputModule,
+  ], 
+  providers: [
+    {provide: MatPaginatorIntl, useClass: CustomPaginatorIntl}
   ]
 })
 export class AngularMaterialModule { }

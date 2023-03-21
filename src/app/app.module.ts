@@ -9,6 +9,7 @@ import { ProductsComponent } from './products/products.component';
 import { ClientsComponent } from './clients/clients.component';
 import { PurchasesComponent } from './purchases/purchases.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ProductDetailsComponent } from './products/product-details/product-details.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
     ProductsComponent,
     ClientsComponent,
     PurchasesComponent,
+    ProductDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -24,7 +26,9 @@ import { HttpClientModule } from '@angular/common/http';
     CommonComponentsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

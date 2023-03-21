@@ -6,7 +6,10 @@ table {
     font-size: 14px;
     width: 100%;
   }
-  
-  td, th {
-    width: 25%;
-  }
+
+    tr.table-row:hover{
+      cursor: pointer;
+      background-color: lightblue !important;
+    }
+
+  // }

@@ -16,7 +16,7 @@ export class ProductsService {
       this._baseUrl = configurationService.baseUrl;
     }
 
-  getProducts(): Observable<ProductsResponse> {
-    return this.http.get<ProductsResponse>(`${this._baseUrl}products`);
+  getProducts(page: number = 1, limit: number = 10): Observable<ProductsResponse> {
+    return this.http.get<ProductsResponse>(`${this._baseUrl}products?page=${page.toString()}&limit=${limit.toString()}`);
   }
 }

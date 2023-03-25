@@ -1,10 +1,20 @@
 <!--app-sidenav></app-sidenav-->
-<mat-form-field>
+<div class="display-flex margin-right-1 margin-left-1 margin-top-1">
+  <mat-form-field appearance="outline">
     <mat-label>Buscar</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Producto a buscar..." #input>
+    <mat-icon matSuffix>search</mat-icon>
   </mat-form-field>
-  
-  <div class="mat-elevation-z8">
+  <mat-form-field appearance="outline" class="margin-left-1">
+    <mat-label>Categoría</mat-label>
+    <mat-select>
+      <ng-container *ngFor="let category of categories">
+        <mat-option value="{{category.id}}">{{category.value| titlecase}} </mat-option>
+      </ng-container>
+    </mat-select>
+  </mat-form-field>
+</div>
+  <div class="mat-elevation-z8 margin-left-1 margin-right-1">
     <table mat-table [dataSource]="dataSource" matSort>
         <ng-container *ngFor="let column of columns">
             <ng-container matColumnDef="{{column.column}}">

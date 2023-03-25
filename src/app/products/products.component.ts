@@ -7,6 +7,7 @@ import { ProductItem, ProductsResponse } from './interfaces/products.interface';
 import { ProductsService } from './products.service';
 import { Observable, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { Categories } from '../common/enums/categories';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -22,6 +23,7 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
     {column: 'shortTermPrice', title:'Contado'},
     {column: 'longTermPrice', title:'Abonos'},
   ]
+  categories = Categories;
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   @ViewChild(MatSort, { static: true })

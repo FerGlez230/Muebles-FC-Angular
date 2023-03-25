@@ -12,18 +12,63 @@
 @import 'styles/helpers.styles.scss';
 
 
-
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$muebles-fc-primary: mat.define-palette(mat.$blue-grey-palette);
-$muebles-fc-accent: mat.define-palette(mat.$blue-palette, A200, A100, A400);
-
 // The warn palette is optional (defaults to red).
 $muebles-fc-warn: mat.define-palette(mat.$red-palette);
+$primary-palette: (
+  50: #e7e8ed,
+  100: #c3c5d3,
+  200: #9da0b5,
+  300: #797c96,
+  400: #5F6182,
+  500: #474770,
+  600: #414068,
+  700: #39375d,
+  800: #312e50,
+  900: #231f3f,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+  )
+);
 
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as "color" or "typography".
+$accent-palette: (
+  50: #ede6da,
+  100: #D4C1A4,
+  200: #bb9863,
+  300: #a3721d,
+  400: #945900,
+  500: #854100,
+  600: #843900,
+  700: #802c00,
+  800: #791b00,
+  900: #700000,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+  )
+);
+$muebles-fc-primary: mat.define-palette($primary-palette, 400);
+$muebles-fc-accent: mat.define-palette($accent-palette, 100);
+
 $muebles-fc-theme: mat.define-light-theme((
   color: (
     primary: $muebles-fc-primary,
@@ -32,16 +77,16 @@ $muebles-fc-theme: mat.define-light-theme((
   )
 ));
 
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
 @include mat.all-component-themes($muebles-fc-theme);
-
-/* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 a {
   text-decoration: none;
+}
+
+tr.table-row:hover{
+  cursor: pointer;
+  background-color: map-get($primary-palette, 50) !important;
 }

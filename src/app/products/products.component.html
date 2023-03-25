@@ -7,7 +7,7 @@
   </mat-form-field>
   <mat-form-field appearance="outline" class="margin-left-1">
     <mat-label>Categoría</mat-label>
-    <mat-select>
+    <mat-select (selectionChange)="handleCategorySelect($event)">
       <ng-container *ngFor="let category of categories">
         <mat-option value="{{category.id}}">{{category.value| titlecase}} </mat-option>
       </ng-container>

@@ -16,7 +16,11 @@ export class ProductsService {
       this._baseUrl = configurationService.baseUrl;
     }
 
-  getProducts(page: number = 1, limit: number = 10): Observable<ProductsResponse> {
-    return this.http.get<ProductsResponse>(`${this._baseUrl}products?page=${page.toString()}&limit=${limit.toString()}`);
+  getProducts(category: string = '', page: number = 1, limit: number = 10): Observable<ProductsResponse> {
+    if( category !== '') {
+      return this.http.get<ProductsResponse>(`${this._baseUrl}products/category/${category}?page=${page.toString()}&limit=${limit.toString()}`);
+    }else {
+      return this.http.get<ProductsResponse>(`${this._baseUrl}products?page=${page.toString()}&limit=${limit.toString()}`);
+    }
   }
 }

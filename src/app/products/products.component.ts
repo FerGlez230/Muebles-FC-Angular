@@ -8,6 +8,7 @@ import { ProductsService } from './products.service';
 import { Observable, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { Categories } from '../common/enums/categories';
+import { MatSelectChange } from '@angular/material/select';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -16,6 +17,7 @@ import { Categories } from '../common/enums/categories';
 export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   displayedColumns: string[] = [];
   dataSource!: MatTableDataSource<ProductItem>;
+  categorySelected: string = '';
   columns = [
     {column: 'name',  title: 'Producto'},
     {column: 'price', title:'Precio'},
@@ -65,7 +67,7 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   public handlePaginatorChange(event: PageEvent): void{
     console.log(event);
     this.subscription.add(
-      this.productService.getProducts(event.pageIndex + 1, event.pageSize).subscribe(
+      this.productService.getProducts(this.categorySelected, event.pageIndex + 1, event.pageSize).subscribe(
         (productsResponse: ProductsResponse) => this.setTableData(productsResponse)
       )
     )
@@ -81,6 +83,13 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
     if( row.id){
       this.router.navigateByUrl(`/productos/${row.id}`);
     }
+  }
+  public handleCategorySelect( $event: MatSelectChange) {
+    console.log($event);
+    this.categorySelected = $event.value;
+    this.productService.getProducts(this.categorySelected).subscribe(
+      (productsResponse: ProductsResponse) => this.setTableData(productsResponse)
+    )
   }
 }
 

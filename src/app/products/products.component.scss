@@ -6,10 +6,6 @@
     font-size: 1rem;
     width: 100%;
   }
-  tr.table-row:hover{
-    cursor: pointer;
-    background-color: lightblue !important;
-  }
   .mat-mdc-form-field.mat-focused{
     .mdc-notched-outline__notch {
       width: calc(65px * var(--mat-mdc-form-field-floating-label-scale, 0.75) + 9px) !important;

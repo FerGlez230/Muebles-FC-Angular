@@ -20,3 +20,11 @@
 .color-dark-gray {
     color: $dark-gray !important;
 }
+.background-color-gray{
+    color: $white !important;
+    background-color: $dark-gray !important;
+}
+.delete-button {
+    color: $white !important;
+    background-color: $danger !important;
+}

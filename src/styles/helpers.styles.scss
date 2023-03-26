@@ -1,6 +1,22 @@
+@import './variables.scss';
 .span-hover-pointer:hover {
     cursor: pointer;
 }
 .display-flex {
     display: flex;
+}
+.color-primary {
+    color: $primary !important;
+}
+.color-danger {
+    color: $danger !important;
+}
+.color-secondary {
+    color: $secondary !important;
+}
+.color-gray {
+    color: $gray !important;
+}
+.color-dark-gray {
+    color: $dark-gray !important;
 }

@@ -1,0 +1,9 @@
+<h1 class="margin-bottom-0_5" mat-dialog-title>¿Estás seguro?</h1>
+<div mat-dialog-content>
+  <p>Estás a punto de eliminar: </p>
+  <mat-label>{{data}}</mat-label>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="handleCancel()" cdkFocusInitial>Cancelar</button>
+  <button mat-button [mat-dialog-close]="true">Eliminar</button>
+</div>

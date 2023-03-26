@@ -14,7 +14,7 @@ import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginato
 import { MatInputModule } from '@angular/material/input';
 import { CustomPaginatorIntl } from './paginator/CustomPaginatorIntl';
 import { MatSelectModule } from '@angular/material/select';
-
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [],
@@ -32,6 +32,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatToolbarModule,
     MatPaginatorModule,
     MatInputModule,
+    MatDialogModule,
   ], 
   exports: [
     LayoutModule,
@@ -47,6 +48,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatPaginatorModule,
     MatInputModule,
     MatSelectModule,
+    MatDialogModule,
   ], 
   providers: [
     {provide: MatPaginatorIntl, useClass: CustomPaginatorIntl}

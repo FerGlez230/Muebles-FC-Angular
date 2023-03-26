@@ -4,11 +4,13 @@ import { HeaderComponent } from './header/header.component';
 import { AngularMaterialModule } from './angular-material.module';
 import { RouterModule } from '@angular/router';
 import { SidenavComponent } from './sidenav/sidenav.component';
+import { DeleteModalComponent } from './components/delete-modal/delete-modal.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     SidenavComponent,
+    DeleteModalComponent,
   ],
   imports: [
     CommonModule,
@@ -21,6 +23,8 @@ import { SidenavComponent } from './sidenav/sidenav.component';
   exports: [ 
     AngularMaterialModule,
     HeaderComponent,
-    SidenavComponent]
+    SidenavComponent,
+    DeleteModalComponent,
+  ]
 })
 export class CommonComponentsModule { }

@@ -9,6 +9,8 @@ import { Observable, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { Categories } from '../common/enums/categories';
 import { MatSelectChange } from '@angular/material/select';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteModalComponent } from '../common/components/delete-modal/delete-modal.component';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -36,9 +38,11 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     private readonly productsCoreLayer: ProductsCoreLayer,
     private readonly productService: ProductsService,
+    private readonly modal: MatDialog,
     private readonly router: Router,
   ) {
-    this.displayedColumns = this.columns.map(column => column.column);
+    this.displayedColumns = [...this.columns.map(column => column.column), 'actions'];
+
   }
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
@@ -66,8 +70,11 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   }
   public handlePaginatorChange(event: PageEvent): void{
     console.log(event);
+    this.handleGetProducts(event.pageIndex + 1, event.pageSize);
+  }
+  private handleGetProducts( page: number = 1, limit: number = 10){
     this.subscription.add(
-      this.productService.getProducts(this.categorySelected, event.pageIndex + 1, event.pageSize).subscribe(
+      this.productService.getProducts(this.categorySelected, page, limit).subscribe(
         (productsResponse: ProductsResponse) => this.setTableData(productsResponse)
       )
     )
@@ -81,15 +88,37 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   }
   public handleRowClick( row: ProductItem): void {
     if( row.id){
-      this.router.navigateByUrl(`/productos/${row.id}`);
+      // this.router.navigateByUrl(`/productos/${row.id}`);
     }
   }
-  public handleCategorySelect( $event: MatSelectChange) {
+  public handleCategorySelect( $event: MatSelectChange): void {
     console.log($event);
     this.categorySelected = $event.value;
     this.productService.getProducts(this.categorySelected).subscribe(
       (productsResponse: ProductsResponse) => this.setTableData(productsResponse)
     )
+  }
+  public onButtonClicked(row: any) {
+    console.log(row);
+  }
+  public handleEditProduct(row: ProductItem): void {
+    console.log('edit', row);
+  }
+  public handleDeleteProduct(product: ProductItem): void {
+    const dialogRef = this.modal.open( DeleteModalComponent, {
+      data: product.name,
+    });
+    dialogRef.afterClosed().subscribe(res => {
+      if( res ) {
+        this.productService.delete(product.id).subscribe( res=> {
+          console.log(res);
+          this.handleGetProducts();
+        })
+      } else {
+        //handle error
+      }
+    })
+
   }
 }
 

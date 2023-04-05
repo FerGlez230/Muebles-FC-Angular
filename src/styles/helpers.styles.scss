@@ -28,3 +28,16 @@
     color: $white !important;
     background-color: $danger !important;
 }
+.primary-button {
+    color: $white !important;
+    background-color: $primary !important;
+}
+.secondary-button {
+    color: $white !important;
+    background-color: $secondary !important;
+}
+
+.content-vertical {
+    display: flex !important;
+    flex-direction: column !important;
+}

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ProductItem, ProductsResponse } from './interfaces/products.interface';
+import { ProductBaseItem, ProductsResponse } from './interfaces/products.interface';
 import { ConfigurationService } from '../configuration/configuration.service';
 
 @Injectable({
@@ -25,5 +25,8 @@ export class ProductsService {
   }
   public delete(id: string): Observable<any>{
     return this.http.delete(`${this._baseUrl}products/${id}`);
+  }
+  public update(id: string, body: ProductBaseItem): Observable<any>{
+    return this.http.patch(`${this._baseUrl}products/${id}`, body);
   }
 }

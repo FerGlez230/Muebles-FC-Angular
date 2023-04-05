@@ -19,7 +19,6 @@ export class EditProductModalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: ProductItem,
   ) { }
   ngOnInit(): void {
-    console.log('data', this.data)
     this.initializeComponents();
   }
   private initializeComponents(): void {
@@ -29,7 +28,6 @@ export class EditProductModalComponent implements OnInit {
       category: new FormControl(this.data.category || null, Validators.required),
       }
     );
-    console.log(this.editProductForm);
   }
   public handleCancel(): void {
     this.dialogRef.close();

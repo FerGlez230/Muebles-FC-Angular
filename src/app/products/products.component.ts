@@ -2,7 +2,6 @@ import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/c
 import {MatPaginator, PageEvent} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-import { ProductsCoreLayer } from './products-table.core.layer';
 import { ProductItem, ProductsResponse } from './interfaces/products.interface';
 import { ProductsService } from './products.service';
 import { Observable, Subscription } from 'rxjs';
@@ -37,7 +36,6 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   products: ProductItem[] = [];
   subscription: Subscription = new Subscription();
   constructor(
-    private readonly productsCoreLayer: ProductsCoreLayer,
     private readonly productService: ProductsService,
     private readonly modal: MatDialog,
     private readonly router: Router,
@@ -70,7 +68,6 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
   public handlePaginatorChange(event: PageEvent): void{
-    console.log(event);
     this.handleGetProducts(event.pageIndex + 1, event.pageSize);
   }
   private handleGetProducts( page: number = 1, limit: number = 10){
@@ -93,17 +90,12 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
   public handleCategorySelect( $event: MatSelectChange): void {
-    console.log($event);
     this.categorySelected = $event.value;
     this.subscription.add(this.productService.getProducts(this.categorySelected).subscribe(
       (productsResponse: ProductsResponse) => this.setTableData(productsResponse)
     ));
   }
-  public onButtonClicked(row: any) {
-    console.log(row);
-  }
   public handleEditProduct(product: ProductItem): void {
-    console.log('edit', product);
     const dialogRef = this.modal.open( EditProductModalComponent, {
       data: product
     });

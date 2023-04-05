@@ -11,6 +11,7 @@ import { Categories } from '../common/enums/categories';
 import { MatSelectChange } from '@angular/material/select';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteModalComponent } from '../common/components/delete-modal/delete-modal.component';
+import { EditProductModalComponent } from './components/edit-product-modal/edit-product-modal.component';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -77,14 +78,14 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
       this.productService.getProducts(this.categorySelected, page, limit).subscribe(
         (productsResponse: ProductsResponse) => this.setTableData(productsResponse)
       )
-    )
+    );
   }
   private setTableData(productsResponse: ProductsResponse):void {
     this.products = productsResponse.items;
     this.dataSource = new MatTableDataSource(this.products);
-    this.dataSource.sort = this.sort;
     this.paginator.pageSize = productsResponse.meta.itemsPerPage;
     this.paginator.length = productsResponse.meta.totalItems;
+    this.dataSource.sort = this.sort;
   }
   public handleRowClick( row: ProductItem): void {
     if( row.id){
@@ -94,31 +95,41 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   public handleCategorySelect( $event: MatSelectChange): void {
     console.log($event);
     this.categorySelected = $event.value;
-    this.productService.getProducts(this.categorySelected).subscribe(
+    this.subscription.add(this.productService.getProducts(this.categorySelected).subscribe(
       (productsResponse: ProductsResponse) => this.setTableData(productsResponse)
-    )
+    ));
   }
   public onButtonClicked(row: any) {
     console.log(row);
   }
-  public handleEditProduct(row: ProductItem): void {
-    console.log('edit', row);
+  public handleEditProduct(product: ProductItem): void {
+    console.log('edit', product);
+    const dialogRef = this.modal.open( EditProductModalComponent, {
+      data: product
+    });
+    this.subscription.add(
+      dialogRef.afterClosed().subscribe(productUpdated => {
+        productUpdated.price = +productUpdated.price || 0;
+        this.productService.update(product.id, productUpdated).subscribe( res => {
+          this.handleGetProducts();
+        })
+      })
+    );
   }
   public handleDeleteProduct(product: ProductItem): void {
     const dialogRef = this.modal.open( DeleteModalComponent, {
       data: product.name,
     });
-    dialogRef.afterClosed().subscribe(res => {
-      if( res ) {
-        this.productService.delete(product.id).subscribe( res=> {
-          console.log(res);
-          this.handleGetProducts();
-        })
-      } else {
-        //handle error
-      }
-    })
-
+    this.subscription.add(dialogRef.afterClosed().subscribe(res => {
+        if( res ) {
+          this.productService.delete(product.id).subscribe( res=> {
+            this.handleGetProducts();
+          })
+        } else {
+          //handle error
+        }
+      })
+    );
   }
 }
 

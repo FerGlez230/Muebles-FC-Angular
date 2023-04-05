@@ -1,0 +1,27 @@
+<form [formGroup]="editProductForm">
+  <h1 mat-dialog-title>Editar producto</h1>
+  <div mat-dialog-content class="padding-top-0_5 content-vertical" >
+    <mat-form-field appearance="outline">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="name">
+      <mat-error *ngIf="editProductForm.controls['name'].invalid">El nombre no puede estar vacío</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Precio</mat-label>
+      <input matInput formControlName="price">
+      <mat-error *ngIf="editProductForm.controls['price'].invalid">El precio no puede estar vacío</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Categoría</mat-label>
+      <mat-select formControlName="category">
+        <ng-container *ngFor="let category of categories">
+          <mat-option value="{{category.id}}">{{category.value| titlecase}} </mat-option>
+        </ng-container>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="handleCancel()" cdkFocusInitial class="background-color-gray padding-right-1 padding-left-1">Cancelar</button>
+    <button mat-button [mat-dialog-close]="editProductForm.value" class="secondary-button padding-right-1 padding-left-1">Guardar</button>
+  </div>
+</form>

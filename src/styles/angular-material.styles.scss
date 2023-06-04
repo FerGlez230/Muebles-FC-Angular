@@ -8,4 +8,17 @@ mat-drawer-container {
 }
 .mat-mdc-dialog-actions {
     justify-content: end !important;
+    padding-right: 1.5rem !important;
+}
+.mat-mdc-dialog-container .mdc-dialog__title {
+    font-size: 1.5rem !important;
+    padding-bottom: 1.5rem;
+}
+mat-dialog-container{
+    width: 33vw !important;
+}
+.mat-mdc-dialog-actions.mdc-dialog__actions{
+    button {
+        width: 30%;
+    }
 }

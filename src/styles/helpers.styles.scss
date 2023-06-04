@@ -36,7 +36,9 @@
     color: $white !important;
     background-color: $secondary !important;
 }
-
+.color-white {
+    color: $white !important;
+}
 .content-vertical {
     display: flex !important;
     flex-direction: column !important;

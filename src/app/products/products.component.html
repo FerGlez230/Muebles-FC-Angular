@@ -13,6 +13,11 @@
       </ng-container>
     </mat-select>
   </mat-form-field>
+  <button 
+    mat-raised-button class="margin-left-1 padding-2" 
+    color="accent" (click)="handleAddProduct()">
+    Agregar
+  </button>
 </div>
   <div class="mat-elevation-z8 margin-left-1 margin-right-1">
     <table mat-table [dataSource]="dataSource" matSort>

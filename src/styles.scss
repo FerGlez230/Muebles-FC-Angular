@@ -85,7 +85,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 a {
   text-decoration: none;
 }
-
+input, p {
+  font-size: 1rem !important;
+}
 tr.table-row:hover{
   cursor: pointer;
   background-color: map-get($primary-palette, 50) !important;

@@ -61,6 +61,10 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
+    console.log(filterValue);
+    if(filterValue.length > 3){
+      
+    }
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
     if (this.dataSource.paginator) {
@@ -95,9 +99,22 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
       (productsResponse: ProductsResponse) => this.setTableData(productsResponse)
     ));
   }
+  public handleAddProduct( ): void {
+    const dialogRef = this.modal.open( EditProductModalComponent, {
+      data:{ product: {}, mode: 'add'},
+    });
+    this.subscription.add(
+      dialogRef.afterClosed().subscribe(productAdded => {
+        productAdded.price = +productAdded.price || 0;
+        this.productService.add( productAdded ).subscribe( res => {
+          this.handleGetProducts();
+        })
+      })
+    );
+  }
   public handleEditProduct(product: ProductItem): void {
     const dialogRef = this.modal.open( EditProductModalComponent, {
-      data: product
+      data:{ product, mode: 'edit'},
     });
     this.subscription.add(
       dialogRef.afterClosed().subscribe(productUpdated => {

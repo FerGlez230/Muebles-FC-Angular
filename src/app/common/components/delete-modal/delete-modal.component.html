@@ -4,6 +4,6 @@
   <mat-label>{{data}}</mat-label>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="handleCancel()" cdkFocusInitial class="background-color-gray padding-right-1 padding-left-1">Cancelar</button>
-  <button mat-button [mat-dialog-close]="true" class="delete-button padding-right-1 padding-left-1" >Eliminar</button>
+  <button mat-raised-button (click)="handleCancel()" cdkFocusInitial class="background-color-gray padding-right-1 padding-left-1">Cancelar</button>
+  <button mat-raised-button color="warn" [mat-dialog-close]="true" class="padding-right-1 padding-left-1" >Eliminar</button>
 </div>

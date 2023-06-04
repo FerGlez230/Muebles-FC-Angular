@@ -29,4 +29,7 @@ export class ProductsService {
   public update(id: string, body: ProductBaseItem): Observable<any>{
     return this.http.patch(`${this._baseUrl}products/${id}`, body);
   }
+  public add(product: ProductBaseItem): Observable<any>{
+    return this.http.post(`${this._baseUrl}products`, product);
+  }
 }

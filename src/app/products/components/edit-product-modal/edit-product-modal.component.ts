@@ -13,19 +13,20 @@ import { Categories } from 'src/app/common/enums/categories';
 export class EditProductModalComponent implements OnInit {
   public editProductForm: FormGroup;
   public categories = Categories;
+  private readonly MODES = { add: 'add', edit: 'edit' };
   constructor(
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<EditProductModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: ProductItem,
+    @Inject(MAT_DIALOG_DATA) public data: {product: ProductItem, mode: string},
   ) { }
   ngOnInit(): void {
     this.initializeComponents();
   }
   private initializeComponents(): void {
     this.editProductForm = this.fb.group({
-      name: new FormControl(this.data.name || '', Validators.required),
-      price: new FormControl(this.data.price || 0, Validators.required),
-      category: new FormControl(this.data.category || null, Validators.required),
+      name: new FormControl(this.data.product.name || '', Validators.required),
+      price: new FormControl(this.data.product.price || null, Validators.required),
+      category: new FormControl(this.data.product.category || null, Validators.required),
       }
     );
   }
